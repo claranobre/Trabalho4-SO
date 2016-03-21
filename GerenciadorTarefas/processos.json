@@ -1,0 +1,42 @@
+{
+ "name": "processos",
+ "children": 
+ [
+  {
+    "name": "chrome",
+    "children": 
+    [
+      {"name": "Chrome01", "size": 8833, "pid": 124},
+      {"name": "Chrome02", "size": 1732, "pid": 12111},
+      {"name": "Chrome03", "size": 3623, "pid": 121},
+      {"name": "Chrome04", "size": 1006, "pid": 122}
+    ]
+  },
+  {
+    "name": "firefox",
+    "children": 
+    [
+      {"name": "Firefox01", "size": 8833, "pid": 124},
+      {"name": "Firefox02", "size": 1732, "pid": 124},
+      {
+	"name": "subfirefox",
+	"children": 
+	[
+	  {"name": "subirefox01", "size": 623, "pid": 124},
+	  {"name": "subirefox02", "size": 323, "pid": 124}	  
+	]
+      },
+      {"name": "Firefox04", "size": 1006, "pid": 124}
+    ]
+  },
+  {
+    "name": "office",
+    "children":
+    [
+      {"name": "Office01", "size": 4833, "pid": 124},
+      {"name": "Office02", "size": 2732, "pid": 124},
+      {"name": "Office03", "size": 623, "pid": 124}
+    ]
+  }
+ ]
+}

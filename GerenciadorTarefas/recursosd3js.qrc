@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>index.html</file>
+        <file>processos.json</file>
+    </qresource>
+</RCC>
