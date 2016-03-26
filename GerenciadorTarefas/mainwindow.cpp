@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "thread.h"
+#include "processos.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -118,6 +119,11 @@ void MainWindow::atualizarProcessos(){
 
         file.close();
     }
+}
+
+void MainWindow::finalizarProcessos(QString pid)
+{
+     kill(pid, SIGKILL);
 }
 
 void MainWindow::inicializarGraficoMemoria()

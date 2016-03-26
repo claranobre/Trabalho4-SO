@@ -27,6 +27,7 @@ private slots:
   void atualizarGraficoCarga();
   void atualizarGraficoTempoDescarga();
   void atualizarProcessos();
+  void finalizarProcessos();
 
 private:
     Ui::MainWindow *ui;
