@@ -1,8 +1,9 @@
-#ifndef MAINWINDOW_H
+ #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
 #include <QMainWindow>
 #include <QTimer>
+#include <QPlainTextEdit>
 
 namespace Ui {
 class MainWindow;
@@ -25,6 +26,7 @@ private slots:
   void atualizarGraficoMemoria();
   void atualizarGraficoCarga();
   void atualizarGraficoTempoDescarga();
+  void atualizarProcessos();
 
 private:
     Ui::MainWindow *ui;

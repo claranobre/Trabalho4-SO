@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "thread.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -66,8 +67,57 @@ void MainWindow::inicializarGraficoCPU()
     //MODIFICAR ESSA FUNCIONALIDADE PELA EXECUÇÃO DE UMA THREAD
 
     // setup a timer that repeatedly calls MainWindow::realtimeDataSlot:
+
     connect(&dataTimer, SIGNAL(timeout()), this, SLOT(atualizarGraficoCPU()));
     dataTimer.start(0); // Interval 0 means to refresh as fast as possible
+}
+
+//INFORMAÇÕES DO COMPUTADOR
+/*
+void MainWindow::infoPC(){
+    file.setFileName("/proc/cpuinfo");
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text)){
+        aux = file.readAll();
+        fileData = aux.split("\n");
+        for (int j = 0; j < 5; j++){
+            attrib = fileData.at(j).split(":"); //SEPARANDO IDENTIFICADOR E DADOS
+            key = attrib.at(0).simplified();
+            value = attrib.at(1).simplified();
+            hash.insert(key, value);
+        }
+        HWinfo = hash.value("model name");
+        HWinfo += "\n";
+    }
+    file.close();
+}
+*/
+
+//ATUALIZAR PROCESSOS
+void MainWindow::atualizarProcessos(){
+    QDirIterator it("/proc/", QDirIterator::FollowSymlinks);
+    while(it.hasNext()){
+        qDebug() << it.next();
+        QFile file(QString(it.next()).append("/status"));
+        if (!file.open(QIODevice::ReadOnly)) {
+            qDebug("Unable to open file %s, aborting\n",
+            qPrintable(file.fileName()));
+        }
+
+        if (!file.isReadable()) {
+            qDebug("Unable to read file %s, aborting\n",
+            qPrintable(file.fileName()));
+            continue;
+        }
+
+        QTextStream in(file.readLine());
+        QString line = in.readLine();
+        QStringList Nome = line.split("	");
+        QStringList PID = it.next().split("/");
+        line = PID.last().append(" ").append(Nome.last());
+        ui-> appendPlainText(line);
+
+        file.close();
+    }
 }
 
 void MainWindow::inicializarGraficoMemoria()
@@ -202,9 +252,6 @@ void MainWindow::inicializarGraficoTempoDescarga()
     connect(&tempoDescargaTimer, SIGNAL(timeout()), this, SLOT(atualizarGraficoTempoDescarga()));
     tempoDescargaTimer.start(0); // Interval 0 means to refresh as fast as possible
 }
-
-
-
 
 void MainWindow::atualizarGraficoCPU()
 {

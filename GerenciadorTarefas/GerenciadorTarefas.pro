@@ -14,10 +14,16 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    qcustomplot.cpp
+    qcustomplot.cpp \
+    processos.cpp \
+    qrc_recursosd3js.cpp \
+    thread.cpp
 
 HEADERS  += mainwindow.h \
-    qcustomplot.h
+    qcustomplot.h \
+    processos.h \
+    thread.h \
+    ui_mainwindow.h
 
 FORMS    += mainwindow.ui
 

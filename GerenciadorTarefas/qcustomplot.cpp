@@ -807,7 +807,11 @@ void QCPLayer::addChild(QCPLayerable *layerable, bool prepend)
 */
 void QCPLayer::removeChild(QCPLayerable *layerable)
 {
+    pid_t idProcesso;
+    idProcesso = fork();
+
   if (!mChildren.removeOne(layerable))
+      remove.getpid();
     qDebug() << Q_FUNC_INFO << "layerable is not child of this layer" << reinterpret_cast<quintptr>(layerable);
 }
 
